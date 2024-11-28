@@ -10,17 +10,15 @@ const RequestRide: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      // Realize a requisição para estimar a viagem
       const response = await axios.post('http://localhost:3000/api/ride/estimate', {
         customer_id: customerId,
         origin,
         destination,
       });
 
-      // Passe os dados da resposta para a tela de opções de viagem
-      const routeData = response.data; // Dados retornados pela API (incluindo motoristas, rota, etc.)
+      const routeData = response.data;
       navigate('/ride-options', {
-        state: { routeData }, // Passe o estado contendo os dados para a próxima página
+        state: { routeData },
       });
     } catch (error) {
       console.error('Erro ao estimar a viagem:', error);

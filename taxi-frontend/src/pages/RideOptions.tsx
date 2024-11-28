@@ -9,12 +9,10 @@ const RideOptions: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Dados de routeData:", routeData);
   }, [routeData]);
 
   const handleConfirm = async (driver: Driver) => {
     if (!routeData) {
-      console.error("Erro: Dados da rota não disponíveis");
       return;
     }   
 

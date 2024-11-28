@@ -40,10 +40,8 @@ const TravelHistoryPage: React.FC = () => {
           <li key={ride.id}>
             <p>{ride.date}</p>
             <p>{ride.origin} → {ride.destination}</p>
-            {/* Verificar se ride.driver está definido */}
             <p>{ride.driver ? ride.driver.name : 'Motorista desconhecido'}</p>
             <p>{ride.distance} | {ride.duration}</p>
-            {/* Verificar se o valor é um número e exibir com toFixed */}
             <p>R$ {isNaN(ride.value) ? 'Valor inválido' : parseFloat(ride.value).toFixed(2)}</p>
           </li>
         ))}

@@ -8,18 +8,18 @@ interface Driver {
 }
 
 const RideEstimator: React.FC = () => {
-  const [customerId, setCustomerId] = useState<string>(''); // ID do cliente
-  const [origin, setOrigin] = useState<string>(''); // Origem da viagem
-  const [destination, setDestination] = useState<string>(''); // Destino da viagem
-  const [drivers, setDrivers] = useState<Driver[]>([]); // Lista de motoristas
-  const [error, setError] = useState<string>(''); // Erro, se ocorrer
-  const [loading, setLoading] = useState<boolean>(false); // Indicador de carregamento
+  const [customerId, setCustomerId] = useState<string>('');
+  const [origin, setOrigin] = useState<string>('');
+  const [destination, setDestination] = useState<string>('');
+  const [drivers, setDrivers] = useState<Driver[]>([]);
+  const [error, setError] = useState<string>(''); 
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleEstimate = async (): Promise<void> => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:3000/ride/estimate', {
+      const response = await axios.post('http://localhost:3000/api/ride/estimate', {
         customer_id: customerId,
         origin,
         destination,

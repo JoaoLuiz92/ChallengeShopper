@@ -1,6 +1,5 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
-//import { LatLngExpression } from 'leaflet';
 import {RouteData } from '../types'
 
 
