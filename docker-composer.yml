@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "8080:8080"  # Mapeando a porta 8080 do contêiner para a porta 8080 do host
+    volumes:
+      - ./backend:/app  # Volumes para persistência de dados
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"  # Mapeando a porta 80 do contêiner para a porta 80 do host
+    volumes:
+      - ./frontend:/app  # Volumes para persistência de dados
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: taxiapp
+    ports:
+      - "3306:3306"  # Expondo a porta 3306 para conexão com o banco de dados
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
